@@ -16,7 +16,7 @@ func ApiHandler(w http.ResponseWriter, r *http.Request) {
 	goRampup := Rampup{
 		Day:    time.Now(),
 		Task:   "Re-Learn Go",
-		Status: "In Progress",
+		Status: "Deployed on CloudRun",
 	}
 	json.NewEncoder(w).Encode(goRampup)
 }
