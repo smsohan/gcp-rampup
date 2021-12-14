@@ -7,14 +7,14 @@ import (
 )
 
 type Rampup struct {
-	Day    time.Time `json:"day"`
+	Time    time.Time `json:"time"`
 	Task   string    `json:"task"`
 	Status string    `json:"status"`
 }
 
 func ApiHandler(w http.ResponseWriter, r *http.Request) {
 	goRampup := Rampup{
-		Day:    time.Now(),
+		Time:    time.Now(),
 		Task:   "Re-Learn Go",
 		Status: "Deployed on CloudRun",
 	}
