@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"encoding/json"
+
+	"github.com/smsohan/gcp-rampup/api"
 )
 
 func TestJSONOutput(t *testing.T) {
@@ -14,7 +16,7 @@ func TestJSONOutput(t *testing.T) {
 	}
 
 	response := httptest.NewRecorder()
-	handler := http.HandlerFunc(ApiHandler)
+	handler := http.HandlerFunc(api.Handler)
 
 	handler.ServeHTTP(response, request)
 
@@ -22,7 +24,7 @@ func TestJSONOutput(t *testing.T) {
 		t.Errorf("Got code %v want code %v", status, http.StatusOK)
 	}
 
-	var rampup Rampup
+	var rampup api.Rampup
 	json.NewDecoder(response.Body).Decode(&rampup)
 
 	want := "Re-Learn Go"
