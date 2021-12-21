@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo "---> Go Buildpack"
+layersdir=$1
+
+golayer="$layersdir"/go
+mkdir -p "$golayer"
+
+echo "---> Downloading and extracting Go"
+set -x
+go_url=https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+wget -q -O - "$go_url" | tar -xzf - -C "$golayer"
+export PATH=$PATH:$golayer/go/bin
+
+echo -e '[types]\nlaunch = true' > "$layersdir/go.toml"
+
+echo "Building Go"
+go build -o $golayer/main
+
+cat > "$layersdir/launch.toml" <<EOL
+[[processes]]
+type = "web"
+command = "$golayer/main"
+default = true
+EOL
+
+
