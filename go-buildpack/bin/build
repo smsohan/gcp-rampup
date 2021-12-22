@@ -26,4 +26,11 @@ command = "$golayer/main"
 default = true
 EOL
 
-
+# ========== ADDED ===========
+# 9. ADD A BOM
+cat >> "$layersdir/launch.toml" <<EOL
+[[bom]]
+name = "go"
+[bom.metadata]
+module = "gomod"
+EOL

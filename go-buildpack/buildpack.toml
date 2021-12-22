@@ -1,7 +1,7 @@
 api = "0.6"
 
 [buildpack]
-  id = "examples/go"
+  id = "smsohan/go"
   version = "0.0.1"
 
 [[stacks]]

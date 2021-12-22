@@ -26,3 +26,4 @@
 
 run_pack.sh
 go-buildpack
+package.toml
